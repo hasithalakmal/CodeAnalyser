@@ -1,0 +1,15 @@
+E:\Smile24\Projects\0005 - CAL\codemageAPI\src\main\java\com\codemage\sql\controller\AnalyserRestController.java
+E:\Smile24\Projects\0005 - CAL\codemageAPI\src\main\java\com\codemage\sql\analyser\CodeAnalyserImpl.java
+E:\Smile24\Projects\0005 - CAL\codemageAPI\src\main\java\com\codemage\sql\util\JsonStringGenarator.java
+E:\Smile24\Projects\0005 - CAL\codemageAPI\src\main\java\com\codemage\sql\analyser\CodeAnalyser.java
+E:\Smile24\Projects\0005 - CAL\codemageAPI\src\main\java\com\codemage\sql\configuration\AppConfig.java
+E:\Smile24\Projects\0005 - CAL\codemageAPI\src\main\java\com\codemage\sql\util\API_keyGenarator.java
+E:\Smile24\Projects\0005 - CAL\codemageAPI\src\main\java\com\codemage\sql\analyser\ReportGen.java
+E:\Smile24\Projects\0005 - CAL\codemageAPI\src\main\java\com\codemage\sql\configuration\AppInitializer.java
+E:\Smile24\Projects\0005 - CAL\codemageAPI\src\main\java\com\codemage\sql\util\JavaFileCommentHandler.java
+E:\Smile24\Projects\0005 - CAL\codemageAPI\src\main\java\com\codemage\sql\util\PasswordHasher.java
+E:\Smile24\Projects\0005 - CAL\codemageAPI\src\main\java\com\codemage\sql\service\AnalyserServiceImpl.java
+E:\Smile24\Projects\0005 - CAL\codemageAPI\src\main\java\com\codemage\sql\service\AnalyserService.java
+E:\Smile24\Projects\0005 - CAL\codemageAPI\src\main\java\com\codemage\sql\util\SonarQubeManager.java
+E:\Smile24\Projects\0005 - CAL\codemageAPI\src\main\java\com\codemage\sql\configuration\CORSFilter.java
+E:\Smile24\Projects\0005 - CAL\codemageAPI\src\main\java\com\codemage\sql\analyser\ReportGenImpl.java
