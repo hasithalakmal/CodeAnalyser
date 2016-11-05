@@ -1,5 +1,8 @@
 package com.codemage.sql.analyser;
 
+import com.codemage.metrix.FirstMetrix;
+import com.codemage.metrix.SecondMetrix;
+import com.codemage.metrix.TheirdMetric;
 import org.json.JSONObject;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,10 +19,18 @@ public class CodeAnalyserImpl implements CodeAnalyser {
     public String getCyclomaticComplexity(String javaCode) {
         System.out.println("working 9");
         String result ="";
-        
+        System.out.println(javaCode);
+        FirstMetrix fm = new FirstMetrix(javaCode);
+        fm.getLineValues();
+        String file = fm.getFileAnalyse();
+        int val = fm.getTotalValue();
+        System.out.println(file);
+        System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+        System.out.println("final result = " + val);
+        System.out.println("result >>>>>>>>>>>>>>>>>>>>>>>>>> "+ val);
         JSONObject obj = new JSONObject();
-	obj.put("type", "Cyclomatic Complexity");
-	obj.put("value", 12);
+	obj.put("type", "Metrix 1");
+	obj.put("value", val);
         
         result = obj.toString();
         System.out.println("working 10");
@@ -31,9 +42,18 @@ public class CodeAnalyserImpl implements CodeAnalyser {
         System.out.println("working 11");
         String result ="";
         
+        SecondMetrix fm2 = new SecondMetrix(javaCode);
+        System.out.println("working 11www");
+        
+        FirstMetrix fm = new FirstMetrix(javaCode);
+        fm.getLineValues();
+        String file = fm.getFileAnalyse();
+        int val = fm.getTotalValue();
+        //double res = fm2.getResult();
+        System.out.println("result >>>>>>>>>>>>>>>>>>>>>>>>>> "+ 88);
         JSONObject obj = new JSONObject();
-	obj.put("type", "Parameeter2");
-	obj.put("value", 50);
+	obj.put("type", "Metrix 2");
+	obj.put("value", val);
         
         result = obj.toString();
         System.out.println("working 12");
@@ -45,9 +65,13 @@ public class CodeAnalyserImpl implements CodeAnalyser {
         System.out.println("working 13");
         String result ="";
         
+        TheirdMetric tm = new TheirdMetric(javaCode);
+        int therdMetVal = tm.getResult();
+        System.out.println("result >>>>>>>>>>>>>>>>>>>>>>>>>> "+ therdMetVal);
+        
         JSONObject obj = new JSONObject();
-	obj.put("type", "Parameeter3");
-	obj.put("value", 40);
+	obj.put("type", "Metrix 3");
+	obj.put("value", therdMetVal);
         
         result = obj.toString();
         System.out.println("working 14");

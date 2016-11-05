@@ -17,13 +17,13 @@ public class ReportGenImpl implements ReportGen {
     public String getReport(String parameterValues) {
         System.out.println("working 19");
         String result ="";
-        double[] weight = {1.9, 2.9, 3.4, 3.5, 6.3};
-        double[] passLevel = {50, 60, 70, 80, 90};
-        String[] parameter_min_max = {"min", "max", "max", "max", "min"}; 
-        double[] value = new double[5];
-        String[] parameter = new String[5]; 
-        double[] weightedValues = new double[5];
-        String[] state = new String[5];
+        double[] weight = {1.9, 2.9, 3.4};
+        double[] passLevel = {50, 60, 70};
+        String[] parameter_min_max = {"min", "max", "max"}; 
+        double[] value = new double[3];
+        String[] parameter = new String[3]; 
+        double[] weightedValues = new double[3];
+        String[] state = new String[3];
         double passValue = 58.3;
         double weightedAvg = 0;
         double weightedvalueSum = 0;

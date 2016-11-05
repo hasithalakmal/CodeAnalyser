@@ -1,0 +1,104 @@
+<pageheader pagename=" Analyse Java Class"></pageheader>
+
+<div class="conter-wrapper">
+   <div class="row">
+        <div class="col-sm-12">
+			<div class="panel panel-info" >
+					<div class="panel-heading">
+						<h3 class="panel-title">Upload File </h3>
+					</div>
+					<div class="panel-body">
+						<div class="form-group">
+							<label for="exampleInputPassword1">Select text file</label>
+							<span class="btn btn-default btn-file" on-read-file="showContent($fileContent)">
+								<input type="file" accept=".java,.txt"  />
+							</span>
+						</div>
+					</div>
+			</div>
+            
+        </div>
+    </div>
+             
+   <div class="row">
+        <div class="col-sm-12">
+			<div class="panel panel-info" >
+					<div class="panel-heading">
+						<h3 class="panel-title">Analyse Report</h3>
+					</div>
+					<div class="panel-body">
+						<div class="row">
+							<div class="col-sm-4">
+								<stats 
+									bgclass="info" 
+									icon="fa fa-area-chart" 
+									value= {{overall_result}} 
+									text="Overall Result">
+								</stats>
+							</div>
+							<div class="col-sm-4">
+								<stats 
+									bgclass="warning" 
+									icon="eye" 
+									value={{pass_value}} 
+									text="Expected Result">
+								</stats>
+							</div>
+							<div class="col-sm-4">
+								<stats 
+									bgclass="primary" 
+									icon="fa fa-tachometer" 
+									value={{avg_result}} 
+									text="Actual Result">
+								</stats>
+							</div>
+						</div>
+						<div class="row">
+							<table class="table table-striped">
+								<thead>
+									<tr>
+										<th>Parameter Name</th>
+										<th>Expected value</th>
+										<th>Weight</th>
+										<th>Actual Value</th>
+										<th>Actual Weighted Value</th>
+										<th>State</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr ng-repeat="result in results" ng-class="{oddRow: $odd}">
+										<td>{{result.parameter}}</td>
+										<td>{{result.pass_level}}</td>
+										<td>{{result.weight}}</td>
+										<td>{{result.value}}</td>
+										<td>{{result.weighted_value}}</td>
+										<td>{{result.state}}</td>
+									</tr>
+								</tbody>
+							</table>
+
+						</div>
+					</div>
+			</div>           
+        </div>
+    </div>
+
+
+               
+   <div class="row">
+        <div class="col-sm-12">
+			<div class="panel panel-info" >
+					<div class="panel-heading">
+						<h3 class="panel-title">Uploaded Java code</h3>
+					</div>
+					<div class="panel-body">
+						<div ng-if="content">
+							<pre>{{ content }}</pre>
+						</div>
+					</div>
+			</div>
+            
+        </div>
+    </div>
+</div>
+

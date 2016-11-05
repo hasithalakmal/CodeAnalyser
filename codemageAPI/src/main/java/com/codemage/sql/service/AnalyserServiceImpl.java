@@ -27,16 +27,14 @@ public class AnalyserServiceImpl implements AnalyserService {
 
     @Override
     public String getAnalysereport(String javaCode) { 
-        sonarQubeManager.createJavaFile(javaCode);
-        sonarQubeManager.AnalyseProject();
+       // sonarQubeManager.createJavaFile(javaCode);
+       // sonarQubeManager.AnalyseProject();
         System.out.println("working 4");
         String result ="";
         
         String res1 = codeAnalyser.getCyclomaticComplexity(javaCode);
         String res2 = codeAnalyser.getParameeter2(javaCode);
         String res3 = codeAnalyser.getParameeter3(javaCode);
-        String res4 = codeAnalyser.getParameeter4(javaCode);
-        String res5 = codeAnalyser.getParameeter5(javaCode);
         System.out.println("working 5");
         
         JSONArray list = new JSONArray();
@@ -44,13 +42,9 @@ public class AnalyserServiceImpl implements AnalyserService {
         JSONObject res1Obj = new JSONObject(res1);
         JSONObject res2Obj = new JSONObject(res2);
         JSONObject res3Obj = new JSONObject(res3);
-        JSONObject res4Obj = new JSONObject(res4);
-        JSONObject res5Obj = new JSONObject(res5);
 	list.put(res1Obj);
 	list.put(res2Obj);
 	list.put(res3Obj);
-        list.put(res4Obj);
-	list.put(res5Obj);
         System.out.println("working 6");
         
         JSONObject obj = new JSONObject();

@@ -20,9 +20,9 @@ import java.util.LinkedList;
 public class FirstMetrix {
 
     private String code = "";
-    TokenCounter wc = new TokenCounter();
-    MethodIdentifier mi = new MethodIdentifier();
-    HashMap tokenlistbyLine;
+    private TokenCounter wc = new TokenCounter();
+    private MethodIdentifier mi = new MethodIdentifier();
+    private HashMap tokenlistbyLine;
     private int TotalCharacters = 0;
     private int Totaltockens = 0;
     private int TotalLines = 0;
@@ -33,6 +33,8 @@ public class FirstMetrix {
         this.code = javaCode;
     }
 
+    
+    
     public void getLineValues() {
         tokenlistbyLine = wc.counter(code);
         this.setNodeValues(tokenlistbyLine);
@@ -170,6 +172,30 @@ public class FirstMetrix {
 
     public void setFileAnalyse(String fileAnalyse) {
         this.fileAnalyse = fileAnalyse;
+    }
+
+    public TokenCounter getWc() {
+        return wc;
+    }
+
+    public void setWc(TokenCounter wc) {
+        this.wc = wc;
+    }
+
+    public MethodIdentifier getMi() {
+        return mi;
+    }
+
+    public void setMi(MethodIdentifier mi) {
+        this.mi = mi;
+    }
+
+    public HashMap getTokenlistbyLine() {
+        return tokenlistbyLine;
+    }
+
+    public void setTokenlistbyLine(HashMap tokenlistbyLine) {
+        this.tokenlistbyLine = tokenlistbyLine;
     }
 
     
