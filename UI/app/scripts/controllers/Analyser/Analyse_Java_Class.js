@@ -17,14 +17,29 @@ angular.module('dashyAngular').controller('Analyse_Java_Class', function ($scope
   $scope.showContent = function($fileContent){
     $scope.content = $fileContent;
 	
+	var jc = $scope.content;
+	
+	var myEscapedJSONString = jc.replace(/\\n/g, "\\n")
+                                      .replace(/\\'/g, "\\'")
+                                      .replace(/\\"/g, '\\"')
+                                      .replace(/\\&/g, "\\&")
+                                      .replace(/\\r/g, "\\r")
+                                      .replace(/\\t/g, "\\t")
+                                      .replace(/\\b/g, "\\b")
+                                      .replace(/\\f/g, "\\f");
+	
 	var javaCodeJSON = {
-						"java_code":  $scope.content
+						"java_code":  myEscapedJSONString
 						}
+
+	var myJSONString = JSON.stringify(javaCodeJSON);
+	
+	//console.log(JSON.parse(myEscapedJSONString) );
 	console.log(javaCodeJSON);
 	
 	$http({
 			  method: 'POST',
-			  data : javaCodeJSON,
+			  data : myJSONString,
 			  url: 'http://localhost:8084/CodeMage/analyse'
 			}).then(function successCallback(response) {
 				$scope.overall_result = response.data.overall_result;
