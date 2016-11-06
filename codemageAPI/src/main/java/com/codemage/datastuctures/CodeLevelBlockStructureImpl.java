@@ -68,8 +68,6 @@ public class CodeLevelBlockStructureImpl implements CodeLevelBlockStructure {
 
             }
         }
-        
-        System.out.println("********************************");
 
         for (int i = 0; i <= depth; i++) {
             LinkedList<Node> nodelist = nodestructure.getElements(i);
@@ -81,10 +79,8 @@ public class CodeLevelBlockStructureImpl implements CodeLevelBlockStructure {
                 int codeblockInIndex = 0;
                 int codeblockOutIndex = 0;
 
-                System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>****************************************");
                 for (int j = 0; j < tokenlistbyLine.size(); j++) {
                     CodeLine codeline = (CodeLine) tokenlistbyLine.get(j);
-                    System.out.println(codeline.getCodeline());
                     int linein = codeline.getInIndex();
                     int lineout = codeline.getOutIndex();
                     if ((linein <= nodeinindex && nodeinindex <= lineout)) {
@@ -101,7 +97,6 @@ public class CodeLevelBlockStructureImpl implements CodeLevelBlockStructure {
                         codeblockOutIndex = lineout;
                     }
                 }
-                System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>****************************************");
 
                 node.setCodeblock(code.substring(codeblockInIndex, codeblockOutIndex));
 
@@ -207,7 +202,7 @@ public class CodeLevelBlockStructureImpl implements CodeLevelBlockStructure {
     public void getAllVariables() {
 
         String[] lines = code.split("\r\n|\r|\n");
-
+        System.out.println(code);
         for (String line : lines) {
             String newString = line;
             for (String datatype : datatypes) {
@@ -216,69 +211,91 @@ public class CodeLevelBlockStructureImpl implements CodeLevelBlockStructure {
                     String s = newString;
                     //should have variable
                     if (newString.contains(";")) {
-                        int datataypeindex = s.indexOf(datatype);
-                        s = s.substring(datataypeindex);
+                        String pattern = "\\b" + datatype + "\\b";
+                        System.out.println("************************** " + pattern);
+                        int count = 0;
+                        Pattern p = Pattern.compile(pattern);
+                        Matcher m = p.matcher(newString);
+                        while (m.find()) {
+                            count++;
+                            System.out.print("Start index: " + m.start());
+                            System.out.print(" End index: " + m.end());
+                            System.out.println(" Found: " + m.group());
+                            System.out.println("&&&&&&&&&&&&&&&&&&&&&&&&&&&");
+                            int datataypeindex = s.indexOf(datatype);
+                            s = s.substring(m.start());
+                            System.out.println("++++++++++++++++++++++++++++++++" + s);
+                            String[] parameterlist = s.split(";");
+                            for (int i = 0; i < parameterlist.length; i++) {
+                                String codepart = parameterlist[i] + ";";
+                                if (codepart.contains(datatype)) {
+                                    s = codepart;
+                                    s = s.replaceAll(datatype, "");
+                                    s = s.replaceAll("=.*?,", "");
+                                    s = s.replaceAll("=.*?;", "");
+                                    s = s.replaceAll("[.*?]", "");
+                                    s = s.replaceAll(",", "");
+                                    s = s.replaceAll("\\[", "").replaceAll("\\]", "");
+                                    s = s.replaceAll(";", "");
+                                    s = s.replaceAll("\\[", "").replaceAll("\\]", "");
 
-                        String[] parameterlist = s.split(";");
-                        for (int i = 0; i < parameterlist.length; i++) {
-                            String codepart = parameterlist[i] + ";";
-                            if (codepart.contains(datatype)) {
-                                s = codepart;
-                                s = s.replaceAll(datatype, "");
-                                s = s.replaceAll("=.*?,", "");
-                                s = s.replaceAll("=.*?;", "");
-                                s = s.replaceAll(",", "");
-                                s = s.replaceAll(";", "");
-
-                                //remove white space & set distinct variables into array
-                                String[] strs = s.trim().split("[\\s']", -1);
-                                ArrayList<String> al = new ArrayList<>(Arrays.asList(strs));
-                                al.removeAll(Arrays.asList(null, ""));
-                                for (int j = 0; j < al.size(); j++) {
-                                    variables.add(al.get(j));
-                                    // System.out.println("variale = " + al.get(j));
+                                    System.out.println("-------------------------------------" + s);
+                                    //remove white space & set distinct variables into array
+                                    String[] strs = s.trim().split("[\\s']", -1);
+                                    ArrayList<String> al = new ArrayList<>(Arrays.asList(strs));
+                                    al.removeAll(Arrays.asList(null, ""));
+                                    for (int j = 0; j < al.size(); j++) {
+                                        variables.add(al.get(j));
+                                        // System.out.println("variale = " + al.get(j));
+                                    }
                                 }
-                            }
 
+                            }
                         }
 
-//                        int datataypeindex = s.indexOf(datatype);
-//                        s = s.substring(datataypeindex);
-//                        s = s.replaceAll("int", "");
-//                        s = s.replaceAll("=.*?,", "");
-//                        s = s.replaceAll("=.*?;", "");
-//                        s = s.replaceAll(",", "");
-//                        s = s.replaceAll(";", "");
-//
-//                        //remove white space & set distinct variables into array
-//                        String[] strs = s.trim().split("[\\s']", -1);
-//                        ArrayList<String> al = new ArrayList<>(Arrays.asList(strs));
-//                        al.removeAll(Arrays.asList(null, ""));
-//                        for (int i = 0; i < al.size(); i++) {
-//                            variables.add(al.get(i));
-//                            System.out.println("variale = " + variables.get(i));
-//                        }
                     } else {// will have variable
                         int inIndex = s.indexOf("(");
                         int outIndex = s.indexOf(")");
                         s = s.substring(inIndex + 1, outIndex);
+                        s = s.replaceAll("[.*?]", "");
+                        s = s.replaceAll("\\[", "");
+                        s = s.replaceAll("\\]", "");
+                        System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$ "+ s);
                         String[] parameterlist = s.split(",");
                         for (int i = 0; i < parameterlist.length; i++) {
                             String variable = parameterlist[i];
-                            if (variable.contains(datatype)) {
-                                variable = variable.replace(datatype, "").trim();
+
+                            String pattern = "\\b" + datatype + "\\b";
+                            System.out.println("************************** " + pattern);
+                            int count = 0;
+                            Pattern p = Pattern.compile(pattern);
+                            Matcher m = p.matcher(variable);
+                            System.out.println("%%%%%%%%%%%%%%%%%%%%%% "+ variable);
+                            while (m.find()) {
+                                count++;
+                                System.out.print("Start index: " + m.start());
+                                System.out.print(" End index: " + m.end());
+                                System.out.println(" Found: " + m.group());
+                                variable = s.substring(m.start(), m.end());
                                 variables.add(variable);
                             }
+
+//                            if (m.find()) {
+//                                variable = variable.replace(datatype, "").trim();
+//                                variables.add(variable);
+//                            }
                         }
                     }
                 }
             }
         }
 
-//        for (int i = 0; i < variables.size(); i++) {
-//            String var = (String) variables.get(i);
-//            System.out.println(var);
-//        }
+        System.out.println("^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^");
+        for (int i = 0; i < variables.size(); i++) {
+            String var = (String) variables.get(i);
+            System.out.println(var);
+        }
+        System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$\n\n\n");
     }
 
     public void getBlockVariables(String codeBlock) {
@@ -287,7 +304,8 @@ public class CodeLevelBlockStructureImpl implements CodeLevelBlockStructure {
 
         for (int i = 0; i < variables.size(); i++) {
             String variable = (String) variables.get(i);
-             String pattern = "\\b" + variable + "\\b";
+            String pattern = "\\b" + variable + "\\b";
+            System.out.println("************************** " + pattern);
             int count = 0;
             Pattern p = Pattern.compile(pattern);
             Matcher m = p.matcher(codeBlock);
@@ -369,7 +387,6 @@ public class CodeLevelBlockStructureImpl implements CodeLevelBlockStructure {
 ////        
 ////        System.out.println();
 //    }
-
 //    public static void main(String[] args) {
 //        String s = "public int get (int x, String y, int z) {";
 //        s = "for (int i = 0; i < parameterlist.length; i++) {";
