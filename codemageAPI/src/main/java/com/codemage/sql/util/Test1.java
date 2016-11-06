@@ -246,7 +246,46 @@ public class Test1 {
 //        double res = fm.getResult();
 //        System.out.println("********************************************************************");
 //        System.out.println(res);
-        FirstMetrix fm = new FirstMetrix(testCode);
+        String dddd = "public class SampleCode6 {\n"
+                + "\n"
+                + "    public int add(int a, int b) {\n"
+                + "        int c = a + b;\n"
+                + "        return c;\n"
+                + "    }\n"
+                + "\n"
+                + "    public void print() {\n"
+                + "        System.out.println(\"Hello\");\n"
+                + "    }\n"
+                + "\n"
+                + "    public void printString(String code) {\n"
+                + "        System.out.println(code);\n"
+                + "    }\n"
+                + "\n"
+                + "    public static void main(String [] args) {\n"
+                + "        SampleCode6 sc = new SampleCode6();\n"
+                + "        sc.add(0, 0);\n"
+                + "        if(true){\n"
+                + "            sc.print();\n"
+                + "        }\n"
+                + "        \n"
+                + "        for (int i = 0; i < 10; i++) {\n"
+                + "            sc.printString(\"hello\");\n"
+                + "        }\n"
+                + "        \n"
+                + "        sc.printString(\"hello\");\n"
+                + "        sc.concat(\"aaa\", \"www\");\n"
+                + "\n"
+                + "    }\n"
+                + "\n"
+                + "    public String concat(String x, String y) {\n"
+                + "        String newString = x + y;\n"
+                + "        return newString;\n"
+                + "    }\n"
+                + "\n"
+                + "   \n"
+                + "}";
+
+        FirstMetrix fm = new FirstMetrix(dddd);
         fm.getLineValues();
         String file = fm.getFileAnalyse();
         int val = fm.getTotalValue();
@@ -256,14 +295,14 @@ public class Test1 {
 
         System.out.println("\n\n\n-----------------------------------------------------\n\n\n");
 
-        SecondMetrix fm2 = new SecondMetrix(testCode);
+        SecondMetrix fm2 = new SecondMetrix(dddd);
         double res = fm2.getResult();
         System.out.println("********************************************************************");
         System.out.println(res);
 
         System.out.println("\n\n\n-----------------------------------------------------\n\n\n");
 
-        TheirdMetric tm = new TheirdMetric(testCode);
+        TheirdMetric tm = new TheirdMetric(dddd);
         int therdMetVal = tm.getResult();
         System.out.println("final result = " + therdMetVal);
         //   TokenCounter wc = new TokenCounter();

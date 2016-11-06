@@ -21,6 +21,7 @@ public class CodeAnalyserImpl implements CodeAnalyser {
         String result ="";
         System.out.println(javaCode);
         FirstMetrix fm = new FirstMetrix(javaCode);
+        System.out.println("xxxxxxx");
         fm.getLineValues();
         String file = fm.getFileAnalyse();
         int val = fm.getTotalValue();
@@ -41,7 +42,8 @@ public class CodeAnalyserImpl implements CodeAnalyser {
     public String getParameeter2(String javaCode) {
         System.out.println("working 11");
         String result ="";
-        
+        System.out.println(javaCode);
+        System.out.println("88888888888888888888888888888");
         SecondMetrix fm2 = new SecondMetrix(javaCode);
         System.out.println("working 11www");
         
@@ -49,11 +51,11 @@ public class CodeAnalyserImpl implements CodeAnalyser {
         fm.getLineValues();
         String file = fm.getFileAnalyse();
         int val = fm.getTotalValue();
-        //double res = fm2.getResult();
-        System.out.println("result >>>>>>>>>>>>>>>>>>>>>>>>>> "+ 88);
+        double res = fm2.getResult();
+        System.out.println("result >>>>>>>>>>>>>>>>>>>>>>>>>> "+ res);
         JSONObject obj = new JSONObject();
 	obj.put("type", "Metrix 2");
-	obj.put("value", val);
+	obj.put("value", res);
         
         result = obj.toString();
         System.out.println("working 12");

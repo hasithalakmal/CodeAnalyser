@@ -270,7 +270,7 @@ public class Test1 {
 //        double res = fm.getResult();
 //        System.out.println("********************************************************************");
 //        System.out.println(res);
-        FirstMetrix fm = new FirstMetrix(test1);
+        FirstMetrix fm = new FirstMetrix(met3TestCode);
         fm.getLineValues();
         String file = fm.getFileAnalyse();
         int val = fm.getTotalValue();
@@ -280,14 +280,14 @@ public class Test1 {
 
         System.out.println("\n\n\n-----------------------------------------------------\n\n\n");
 
-        SecondMetrix fm2 = new SecondMetrix(test1);
+        SecondMetrix fm2 = new SecondMetrix(met3TestCode);
         double res = fm2.getResult();
         System.out.println("********************************************************************");
         System.out.println(res);
 
         System.out.println("\n\n\n-----------------------------------------------------\n\n\n");
 
-        TheirdMetric tm = new TheirdMetric(test1);
+        TheirdMetric tm = new TheirdMetric(met3TestCode);
         int therdMetVal = tm.getResult();
         System.out.println("final result = " + therdMetVal);
         //   TokenCounter wc = new TokenCounter();

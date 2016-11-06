@@ -39,9 +39,14 @@ public class FirstMetrix {
         System.out.println(code);
         tokenlistbyLine = wc.counter(code);
         this.setNodeValues(tokenlistbyLine);
+        
         for (int i = 0; i < tokenlistbyLine.size(); i++) {
             CodeLine codeline = (CodeLine) tokenlistbyLine.get(i);
             Node node = codeline.getNode();
+            System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+           // System.out.println(node.toString());
+            System.out.println(codeline.toString());
+            System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
             int sj = codeline.getNumberOftokens();
             int wi = 1;
             int wn =0;

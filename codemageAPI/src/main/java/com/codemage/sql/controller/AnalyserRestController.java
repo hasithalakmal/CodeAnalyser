@@ -7,6 +7,10 @@ package com.codemage.sql.controller;
 
 import com.codemage.sql.service.AnalyserService;
 import com.codemage.sql.util.JsonStringGenarator;
+import com.codemage.sql.util.MyFileReader;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -25,23 +29,44 @@ public class AnalyserRestController {
 
     @Autowired
     JsonStringGenarator jsonStringGenarator;
-    
+
     @Autowired
     AnalyserService analyserService;
- 
+
     @RequestMapping(value = "analyse", method = RequestMethod.POST, consumes = "application/json", produces = "application/json")
     public String analyseJavaCode(@RequestBody String javaCodeJSON) {
         JSONObject jsonObj = new JSONObject(javaCodeJSON);
         String javaCode = jsonObj.getString("java_code");
-        System.out.println("working 1");
-        String result = analyserService.getAnalysereport(javaCode);
+
+        String newcode = jsonStringGenarator.javaToJSON(javaCode);
+
+        String hdd = "public class SampleCode4 {\n"
+                + "    public void checkCC(String x) {\n"
+                + "        System.out.println(x);\n"
+                + "        if (\"a\".equals(x)) {\n"
+                + "            if (x.length() == 5) {\n"
+                + "                System.out.println(x);\n"
+                + "            } else {\n"
+                + "                System.out.println(x);\n"
+                + "            }\n"
+                + "        } else if (\"b\".equals(x)) {\n"
+                + "            System.out.println(x);\n"
+                + "        } else {\n"
+                + "            System.out.println(x);\n"
+                + "        }       \n"
+                + "        System.out.println(\"jjjjj\"); \n"
+                + "        for (int i = 0; i < 10; i++) {\n"
+                + "            System.out.println(i);\n"
+                + "        }\n"
+                + "    }\n"
+                + "}";
+        String result = analyserService.getAnalysereport(newcode);
         System.out.println("working 2");
-       // result = "{\"msg\":\"success\",\"err\":\"false\",\"result\":\"" + result+ "\"}";
+        // result = "{\"msg\":\"success\",\"err\":\"false\",\"result\":\"" + result+ "\"}";
         //result =jsonStringGenarator.javaToJSON(result);
         System.out.println("working 3");
         System.out.println(result);
         return result;
     }
-    
-   
+
 }

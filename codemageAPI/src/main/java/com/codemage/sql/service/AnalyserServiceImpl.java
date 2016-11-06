@@ -33,6 +33,7 @@ public class AnalyserServiceImpl implements AnalyserService {
         String result ="";
         
         String res1 = codeAnalyser.getCyclomaticComplexity(javaCode);
+        System.out.println(">>>>>>>>>>>>!!!");
         String res2 = codeAnalyser.getParameeter2(javaCode);
         String res3 = codeAnalyser.getParameeter3(javaCode);
         System.out.println("working 5");

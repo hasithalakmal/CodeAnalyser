@@ -6,6 +6,7 @@ com\codemage\sql\util\PasswordHasher.class
 com\codemage\sql\util\Test1.class
 com\codemage\datastuctures\GenQueue.class
 com\codemage\datastuctures\Method.class
+com\codemage\sql\util\MyFileReader.class
 Test1.class
 com\codemage\datastuctures\CodeLevelBlockStructureImpl.class
 com\codemage\sql\configuration\CORSFilter.class

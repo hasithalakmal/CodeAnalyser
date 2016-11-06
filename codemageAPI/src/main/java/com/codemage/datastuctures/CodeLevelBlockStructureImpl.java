@@ -68,6 +68,8 @@ public class CodeLevelBlockStructureImpl implements CodeLevelBlockStructure {
 
             }
         }
+        
+        System.out.println("********************************");
 
         for (int i = 0; i <= depth; i++) {
             LinkedList<Node> nodelist = nodestructure.getElements(i);
@@ -79,8 +81,10 @@ public class CodeLevelBlockStructureImpl implements CodeLevelBlockStructure {
                 int codeblockInIndex = 0;
                 int codeblockOutIndex = 0;
 
+                System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>****************************************");
                 for (int j = 0; j < tokenlistbyLine.size(); j++) {
                     CodeLine codeline = (CodeLine) tokenlistbyLine.get(j);
+                    System.out.println(codeline.getCodeline());
                     int linein = codeline.getInIndex();
                     int lineout = codeline.getOutIndex();
                     if ((linein <= nodeinindex && nodeinindex <= lineout)) {
@@ -97,6 +101,7 @@ public class CodeLevelBlockStructureImpl implements CodeLevelBlockStructure {
                         codeblockOutIndex = lineout;
                     }
                 }
+                System.out.println(">>>>>>>>>>>>>>>>>>>>>>>>>>>>****************************************");
 
                 node.setCodeblock(code.substring(codeblockInIndex, codeblockOutIndex));
 

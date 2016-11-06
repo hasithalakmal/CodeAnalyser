@@ -22,8 +22,8 @@ public class JsonStringGenarator {
     
     public String javaToJSON(String x) {
       //  String y = x.replace("\n", "\\n");
-      String y = x.replace("\n", "\\n");
-        String z= y.replace("\"", "\\\"");
+      String y = x.replace("\n", "\\\n");
+      String z= y.replace("\\", " ");
         return z;
     }
 
