@@ -10,23 +10,22 @@ package com.mycompany.testcodes;
  * @author Hasitha Lakmal
  */
 public class InsertionSort {
-    // Insertion Sort Method for Descending Order
 
     public static void main(String [] args) {
         int[] num = {1, 2, 3, 4, 5, 6};
         int ccc = 0;
-        int j;                     // the number of items sorted so far
-        int key;                // the item to be inserted
+        int j;     
+        int key;       
         int i;
 
-        for (j = 1; j < num.length; j++) // Start with 1 (not 0)
+        for (j = 1; j < num.length; j++) 
         {
             key = num[j];
-            for (i = j - 1; (i >= 0) && (num[i] < key); i--) // Smaller values are moving up
+            for (i = j - 1; (i >= 0) && (num[i] < key); i--) 
             {
                 num[i + 1] = num[i];
             }
-            num[i + 1] = key;    // Put the key in its proper location
+            num[i + 1] = key;  
         }
     }
 }
